@@ -5,19 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const nombre = document.getElementById("nombre").value;
-        const email = document.getElementById("email").value;
-        const mensaje = document.getElementById("mensaje").value;
-
-        // Llamada a la función para enviar los datos a Google Sheets
-        enviarDatosAGoogleSheets(nombre, email, mensaje);
-
+        // Mostrar el mensaje de confirmación
         mensajeConfirmacion.classList.remove("hidden");
-        contactForm.reset();
 
+        // Reiniciar el contenido del mensaje después de 5 segundos
         setTimeout(function () {
             mensajeConfirmacion.textContent = '';
         }, 5000);
+
+        // Restablecer el formulario para permitir el envío nuevamente
+        contactForm.reset();
     });
 
     const darkModeToggle = document.getElementById('modoOscuro');
@@ -27,30 +24,3 @@ document.addEventListener("DOMContentLoaded", function () {
         body.classList.toggle('dark-mode');
     });
 });
-
-// Función para enviar los datos a Google Sheets
-function enviarDatosAGoogleSheets(nombre, email, mensaje) {
-    const apiKey = "AIzaSyDJOnAs-1lQbjP_t6ouFWhO89eNf8PYZFc"; // Reemplaza con tu clave de API
-    const spreadsheetId = "16czgSV0TiJ9k13cfTUx8A8Hjio72APs7ZOGMQtu05Is"; // Reemplaza con el ID de tu hoja de cálculo
-
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Formulario?key=${apiKey}`;
-    
-    const data = {
-        values: [[nombre, email, mensaje]]
-    };
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Datos enviados:', data);
-    })
-    .catch(error => {
-        console.error('Error al enviar los datos:', error);
-    });
-}
