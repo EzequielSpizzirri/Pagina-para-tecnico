@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "Mensaje" => $mensaje
     );
 
-    $spreadsheetId = "16czgSV0TiJ9k13cfTUx8A8Hjio72APs7ZOGMQtu05Is/edit?hl=es#gid=0";
+    $spreadsheetId = "16czgSV0TiJ9k13cfTUx8A8Hjio72APs7ZOGMQtu05Is";
     $apiKey = "AIzaSyDJOnAs-1lQbjP_t6ouFWhO89eNf8PYZFc";
     $url = "https://sheets.googleapis.com/v4/spreadsheets/$spreadsheetId/values/Formulario?key=$apiKey";
 
