@@ -4,17 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
-
-        // Mostrar el mensaje de confirmación
         mensajeConfirmacion.classList.remove("hidden");
+        contactForm.reset();
 
-        // Reiniciar el contenido del mensaje después de 5 segundos
         setTimeout(function () {
             mensajeConfirmacion.textContent = '';
         }, 5000);
-
-        // Restablecer el formulario para permitir el envío nuevamente
-        contactForm.reset();
     });
 
     const darkModeToggle = document.getElementById('modoOscuro');
